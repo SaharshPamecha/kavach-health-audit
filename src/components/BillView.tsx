@@ -136,7 +136,7 @@ export default function BillView({
                   {!flag && it.listI && (
                     <div className="mt-1.5 flex items-center gap-1 text-[10px] text-amber">
                       <Lock className="h-2.5 w-2.5" strokeWidth={2.4} />
-                      IRDAI List-I
+                      IRDAI non-payable
                     </div>
                   )}
                 </div>

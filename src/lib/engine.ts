@@ -194,12 +194,12 @@ function buildFlags(c: DemoCase, lines: AuditedLine[], opts: EngineOptions): Fla
     flags.push({
       id: `${c.id}-listI`,
       kind: "list_i_billed",
-      title: `List-I non-payables charged to the patient`,
+      title: `Non-payable items charged to the patient`,
       amount: total,
       ruleId: RULES["NP-01"].id,
       citation: RULES["NP-01"].citation,
-      plain: `${moneyList(listI.map((l) => l.item.label))} appear on IRDAI's List-I — items a hospital absorbs as its own cost of running the facility. They were billed to you instead, and the TPA then deducted them as non-payable, so you paid for them twice over: once in the bill, and once by having no reimbursement.`,
-      ask: `"These items are IRDAI List-I non-payables under the 27 August 2019 circular. Please reverse ₹${total.toLocaleString("en-IN")} from the bill."`,
+      plain: `${moneyList(listI.map((l) => l.item.label))} sit inside charges you have already paid for. IRDAI's itemisation lists subsume registration and administrative costs into the cost of treatment (List-IV), and treat gloves and similar consumables as optional items (List-I) that may be charged only where an optional cover is in force. They were billed on top anyway — and then deducted by the TPA as non-payable, so you paid twice: once in the bill, and again by getting nothing back.`,
+      ask: `"These lines are on IRDAI's itemisation lists under circular 176/09/2019. Please reverse ₹${total.toLocaleString("en-IN")} from the bill."`,
       against: "hospital",
     });
   }
@@ -236,7 +236,7 @@ function plainFor(kind: FlagKind, it: LineItem, amount: number, c: DemoCase): st
   const r = Math.round((1 - proportionateRatio(c.roomRentPerDay, c.policy.roomCapPerDay)) * 1000) / 10;
   switch (kind) {
     case "illegal_proportionate":
-      return `The TPA applied the ${r}% room-rent ratio to ${it.label}. But ${it.label.toLowerCase()} is priced per unit of product — the invoice is identical whether you are in a deluxe room or a general ward. The ratio is lawful on room, surgeon and OT charges, and nowhere else. On this line it removed ₹${amount.toLocaleString("en-IN")} that had no basis.`;
+      return `The TPA applied the ${r}% room-rent ratio to ${it.label}. But ${it.label.toLowerCase()} is priced per unit of product — the invoice is identical whether you are in a deluxe room or a general ward. The ratio is lawful on room, surgeon and OT charges, and nowhere else. The National Commission has called this flat-ratio method faulty: the correct question is what this line would have cost in the eligible room category, and a strip of tablets costs the same either way. On this line the TPA removed ₹${amount.toLocaleString("en-IN")} that had no basis.`;
     case "icu_exception":
       return `Your schedule allows pressure-relief (air) mattress charges once an ICU stay crosses three days. You were in ICU for ${c.icuDays} days. The TPA allowed a single day and disallowed the rest as a "non-payable consumable" — contradicting the exception in the schedule it is administering.`;
     case "phantom_clause":

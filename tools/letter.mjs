@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({headless:false,args:["--headless=old","--no-sandbox","--disable-gpu","--disable-dev-shm-usage"],executablePath:"/home/hermes/.cache/ms-playwright/chromium-1148/chrome-linux/chrome"});
+const p = await b.newPage({viewport:{width:390,height:844}});
+await p.goto("http://localhost:3300",{waitUntil:"networkidle"});
+await p.getByText("Nandi Ridge Multispeciality").first().click();
+await p.waitForTimeout(500);
+await p.getByRole("button",{name:"Dispute",exact:true}).click();
+await p.waitForTimeout(700);
+const t = await p.locator("pre").first().textContent();
+console.log(t);
+await b.close();

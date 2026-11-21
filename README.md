@@ -29,7 +29,7 @@ A chatbot can produce a plausible paragraph about all three. It cannot produce t
 | | |
 |---|---|
 | **Scan** | `<input type="file" accept="image/*" capture="environment">` → vision extraction of line items, with a deterministic fallback to editable sample lines when no key is configured. Never dead-ends. |
-| **Audit** | A live rule engine: room-rent proportionate ratio, IRDAI List-I non-payables, consumables add-on, co-pay. Every clause moves the KPI cards and the doughnut in real time. |
+| **Audit** | A live rule engine: room-rent proportionate ratio, IRDAI's itemisation lists (I–IV), consumables add-on, co-pay. Every clause moves the KPI cards and the doughnut in real time. |
 | **Dispute** | A formal letter naming every rupee and every citation, in English / हिन्दी / ಕನ್ನಡ, with copy, WhatsApp share, read-aloud, and a print-to-PDF sheet. |
 | **Desk mode** | A full-bleed screen you physically turn around and hold up at the billing counter. Three numbers, three rules, legible from a metre away. |
 | **Dossier** | ₹49 "Certified TPA Dispute Dossier" through Razorpay test-mode checkout, with HMAC signature verification server-side. Falls back to a simulation when keys are absent. |
@@ -50,11 +50,22 @@ Applied **only** to `room`, `surgeon`, `ot` — the categories whose price actua
 
 It is **never** applied to `pharmacy`, `implant`, `consumable`, `diagnostic`, `nursing`, `misc`. A powered stapler costs the hospital the same whether you slept in a deluxe room or a general ward; a strip of antibiotics does too. Any cut on those lines is raised as **Illegal proportionate cut**.
 
-### 2. List-I non-payables
+### 2. The itemisation lists
 
-IRDAI's 2019 exclusion-standardisation circular puts admission/registration fees, gloves, syringes, needles, IV sets and similar in **List-I** — costs a facility absorbs as the cost of running itself. `src/lib/nonpayables.ts` is a deterministic keyword matcher (regex, not a model) so the same photograph always yields the same flags.
+IRDAI circular **176/09/2019** (27 Sep 2019), Annexure-I, classifies hospital charges into four lists:
 
-The **Consumables Cover Add-on** toggle simulates a policy that pays for them instead. Flip it and the hospital claim falls away and the insurer's share rises — live.
+- **List-I** — optional items (gloves, masks, air beds, medical records, thermometers…). Payable only where an optional cover is in force.
+- **List-II** — subsumed into **room charges** (documentation charges, admin expenses, housekeeping, admission kit…).
+- **List-III** — subsumed into **procedure / OT charges** (gauze, surgical blades, cotton, theatre booking…).
+- **List-IV** — subsumed into the **cost of treatment** (admission/registration charges, urine bag, glucometer strips…).
+
+Clause 2 of the same circular directs insurers to ensure these "shall not be billed to the policyholders by the hospitals" and to write it into network-hospital SLAs. So a separate "documentation charges" line is a **hospital billing violation**, not merely an insurance exclusion.
+
+`src/lib/nonpayables.ts` is a deterministic keyword matcher (regex, not a model) so the same photograph always yields the same flags.
+
+The **Consumables Cover Add-on** toggle simulates a policy that pays List-I items instead. Flip it and the hospital claim falls away and the insurer's share rises — live.
+
+> An earlier draft of this project cited the 2019 *exclusions* circular (177/09/2019) for these lists. That is a category error — 177/09/2019 contains the table of permanently excluded diseases, not the itemisation annexure. The lists live in **176/09/2019**.
 
 ### 3. Reconciliation, not rounding
 
@@ -69,6 +80,20 @@ insurerActuallyPays + withheldUnlawfully + hospitalOverBilled + genuinelyYours =
 ### 4. What makes a flag credible
 
 Every flag carries a `ruleId`, a full citation, a plain-English explanation, and **the sentence to say at the desk**. Nothing is raised without a rule in `src/lib/rules.ts`. The shortlist asks *"what makes a flag credible?"* — the answer is: it resolves to a numbered clause, and the arithmetic is shown.
+
+### 5. Three legs, so no single repeal collapses it
+
+The proportionate-deduction norms (IRDAI circular **151/06/2020**) were superseded as a standalone instrument by the Master Circular of **29.05.2024** (Annexure-6, entry 19). A careless tool would cite them as though they were still live regulation and be destroyed in one question.
+
+Kavach rests the argument on three independent legs, and each citation says which one it is on:
+
+| Leg | Authority | Survives the 2024 repeal? |
+|---|---|---|
+| **Contract** | The clause reproduced in the policy wording, which is what binds the parties | Yes — the policy is the contract |
+| **Regulation** | IRDAI/HLT/REG/CIR/**176/09/2019** itemisation lists — not on the repeal schedule | Yes |
+| **Precedent** | *New India Assurance v. A.K. Kariappa*, NCDRC R.P. 766/2011 — flat-ratio deduction is "faulty" | Yes — a court decision does not lapse because a circular did |
+
+That is also the honest answer to *"is this legal advice?"* — no. It is a factual objection that points at a document, and the app says so on the Dispute screen.
 
 ---
 

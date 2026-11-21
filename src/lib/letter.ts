@@ -53,7 +53,7 @@ const EN: Strings = {
   groundsIntro: "The following deductions have no lawful basis:",
   ruleWord: "Rule",
   hospitalSection:
-    "Separately, the hospital has charged me items that IRDAI's exclusion-standardisation circular places in List-I — costs a facility absorbs as part of running itself, not costs it may pass to a patient. I ask you to direct the hospital to reverse these.",
+    "Separately, the hospital has billed me items that IRDAI's itemisation lists already place inside charges I have paid — registration and administrative costs under List-IV, consumables such as gloves under List-I. I ask you to direct the hospital to reverse these.",
   prayer: (a) =>
     `I therefore request you to reverse the deductions set out above and settle ${a} within fourteen days.`,
   escalation:
@@ -74,7 +74,7 @@ const EN: Strings = {
     phantom_clause: "Deduction with no clause in the policy",
     icu_exception: "ICU exception ignored",
     whole_implant: "Whole implant disallowed",
-    list_i_billed: "List-I item charged to patient",
+    list_i_billed: "Non-payable item billed",
     arithmetic: "Arithmetic mismatch",
   },
 };
@@ -97,7 +97,7 @@ const HI: Strings = {
   groundsIntro: "निम्नलिखित कटौतियों का कोई वैध आधार नहीं है:",
   ruleWord: "नियम",
   hospitalSection:
-    "इसके अतिरिक्त, अस्पताल ने मुझसे ऐसी मदें वसूली हैं जो IRDAI की अपवर्जन-मानकीकरण अधिसूचना की सूची-I में आती हैं। ये अस्पताल की अपनी संचालन लागत हैं और रोगी से अलग से नहीं ली जा सकतीं। कृपया अस्पताल को इन्हें वापस करने का निर्देश दें।",
+    "इसके अतिरिक्त, अस्पताल ने मुझसे ऐसी मदें वसूली हैं जो IRDAI की मद-वार सूची (सर्कुलर 176/09/2019) के अनुसार पहले से लिए गए शुल्कों में शामिल हैं — पंजीकरण एवं प्रशासनिक शुल्क सूची-IV में, तथा दस्ताने जैसी सामग्री सूची-I में। कृपया अस्पताल को ये राशि वापस करने का निर्देश दें।",
   prayer: (a) => `अतः अनुरोध है कि उपरोक्त कटौतियाँ रद्द कर ${a} की राशि चौदह दिनों के भीतर अदा की जाए।`,
   escalation:
     "IRDAI (बीमाधारक हित संरक्षण) विनियम, 2017 के विनियम 17 के अनुसार शिकायत का निपटारा चौदह दिनों में होना चाहिए। यदि इस अवधि में कारण सहित उत्तर नहीं मिला, तो मैं IRDAI बीमा भरोसा पोर्टल और बीमा लोकपाल के समक्ष शिकायत दर्ज करूँगा। इस पत्र से मेरे किसी अधिकार का त्याग नहीं होता।",
@@ -117,7 +117,7 @@ const HI: Strings = {
     phantom_clause: "पॉलिसी में उल्लेख न होने पर भी कटौती",
     icu_exception: "ICU अपवाद की अनदेखी",
     whole_implant: "पूरा इम्प्लांट अस्वीकृत",
-    list_i_billed: "सूची-I मद रोगी से वसूली",
+    list_i_billed: "अदेय मद रोगी से वसूली",
     arithmetic: "गणना में असंगति",
   },
 };
@@ -140,7 +140,7 @@ const KN: Strings = {
   groundsIntro: "ಕೆಳಗಿನ ಕಡಿತಗಳಿಗೆ ಯಾವುದೇ ಕಾನೂನುಬದ್ಧ ಆಧಾರವಿಲ್ಲ:",
   ruleWord: "ನಿಯಮ",
   hospitalSection:
-    "ಜೊತೆಗೆ, IRDAI ನ ಹೊರಗಿಡುವಿಕೆ-ಪ್ರಮಾಣೀಕರಣ ಅಧಿಸೂಚನೆಯ ಪಟ್ಟಿ-I ಗೆ ಸೇರಿದ ವಸ್ತುಗಳನ್ನು ಆಸ್ಪತ್ರೆ ನನ್ನಿಂದ ವಸೂಲಿ ಮಾಡಿದೆ. ಅವು ಆಸ್ಪತ್ರೆಯ ಸ್ವಂತ ನಿರ್ವಹಣಾ ವೆಚ್ಚಗಳು; ರೋಗಿಯಿಂದ ಪ್ರತ್ಯೇಕವಾಗಿ ವಸೂಲಿ ಮಾಡುವಂತಿಲ್ಲ. ಆ ಮೊತ್ತವನ್ನು ಹಿಂತಿರುಗಿಸುವಂತೆ ಆಸ್ಪತ್ರೆಗೆ ಸೂಚಿಸಬೇಕಾಗಿ ಕೋರುತ್ತೇನೆ.",
+    "ಜೊತೆಗೆ, IRDAI ನ ಮದ-ವಾರು ಪಟ್ಟಿ (ಸರ್ಕ್ಯುಲರ್ 176/09/2019) ಪ್ರಕಾರ ಈಗಾಗಲೇ ವಸೂಲಿ ಮಾಡಿದ ಶುಲ್ಕಗಳಲ್ಲಿ ಸೇರಿರುವ ವಸ್ತುಗಳನ್ನು ಆಸ್ಪತ್ರೆ ನನ್ನಿಂದ ಪ್ರತ್ಯೇಕವಾಗಿ ವಸೂಲಿ ಮಾಡಿದೆ — ನೋಂದಣಿ ಮತ್ತು ಆಡಳಿತ ಶುಲ್ಕಗಳು ಪಟ್ಟಿ-IV ನಲ್ಲಿ, ಕೈಗವಸು ಮುಂತಾದವು ಪಟ್ಟಿ-I ನಲ್ಲಿ. ಆ ಮೊತ್ತವನ್ನು ಹಿಂತಿರುಗಿಸುವಂತೆ ಆಸ್ಪತ್ರೆಗೆ ಸೂಚಿಸಬೇಕಾಗಿ ಕೋರುತ್ತೇನೆ.",
   prayer: (a) => `ಆದ್ದರಿಂದ, ಮೇಲಿನ ಕಡಿತಗಳನ್ನು ರದ್ದುಗೊಳಿಸಿ ${a} ಮೊತ್ತವನ್ನು ಹದಿನಾಲ್ಕು ದಿನಗಳೊಳಗೆ ಪಾವತಿಸಬೇಕಾಗಿ ಕೋರುತ್ತೇನೆ.`,
   escalation:
     "IRDAI (ವಿಮೆದಾರರ ಹಿತ ರಕ್ಷಣೆ) ನಿಯಮಾವಳಿ, 2017 ರ ನಿಯಮ 17 ರಂತೆ ದೂರನ್ನು ಹದಿನಾಲ್ಕು ದಿನಗಳೊಳಗೆ ಇತ್ಯರ್ಥಪಡಿಸಬೇಕು. ಈ ಅವಧಿಯಲ್ಲಿ ಕಾರಣಸಹಿತ ಉತ್ತರ ಬಾರದಿದ್ದಲ್ಲಿ, IRDAI ಬೀಮಾ ಭರೋಸಾ ಪೋರ್ಟಲ್ ಹಾಗೂ ವಿಮಾ ಲೋಕಪಾಲರ ಮುಂದೆ ದೂರು ಸಲ್ಲಿಸುತ್ತೇನೆ. ಈ ಪತ್ರದಿಂದ ನನ್ನ ಯಾವುದೇ ಹಕ್ಕು ಬಿಟ್ಟುಕೊಡುವುದಿಲ್ಲ.",
@@ -160,7 +160,7 @@ const KN: Strings = {
     phantom_clause: "ಪಾಲಿಸಿಯಲ್ಲಿ ಇಲ್ಲದ ಆಧಾರದ ಮೇಲೆ ಕಡಿತ",
     icu_exception: "ICU ವಿನಾಯಿತಿ ನಿರ್ಲಕ್ಷ್ಯ",
     whole_implant: "ಇಡೀ ಇಂಪ್ಲಾಂಟ್ ತಿರಸ್ಕೃತ",
-    list_i_billed: "ಪಟ್ಟಿ-I ವಸ್ತು ರೋಗಿಯಿಂದ ವಸೂಲಿ",
+    list_i_billed: "ಪಾವತಿಸಲಾಗದ ವಸ್ತು ರೋಗಿಯಿಂದ ವಸೂಲಿ",
     arithmetic: "ಲೆಕ್ಕಾಚಾರದ ಅಸಂಗತಿ",
   },
 };
