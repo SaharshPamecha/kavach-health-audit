@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 /**
- * Create a Razorpay order for the ₹49 Certified Dossier.
+ * Create a Razorpay order for the ₹49 Clause-linked Dossier.
  *
  * Deliberately SDK-free: one Basic-auth POST to Razorpay's orders endpoint.
  * When the keys are absent the route reports `configured: false` so the

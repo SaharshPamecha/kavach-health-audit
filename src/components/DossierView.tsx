@@ -316,7 +316,7 @@ export default function DossierView({
             ["The audit and every flag", "Free"],
             ["The dispute letter, all 3 languages", "Free"],
             ["Copy, WhatsApp, save as PDF", "Free"],
-            ["Certified dossier with case reference", "₹49"],
+            ["Clause-linked dossier with case reference", "₹49"],
           ].map(([t, v]) => (
             <div key={t} className="flex items-center justify-between gap-3 px-3.5 py-2.5">
               <span className="text-[11.5px] text-ink-2">{t}</span>
