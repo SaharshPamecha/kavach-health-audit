@@ -1,0 +1,24 @@
+import { chromium } from "playwright";
+const URL = process.argv[2];
+const b = await chromium.launch({headless:false,args:["--headless=old","--no-sandbox","--disable-gpu","--disable-dev-shm-usage"],executablePath:"/home/hermes/.cache/ms-playwright/chromium-1148/chrome-linux/chrome"});
+const p = await b.newPage({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
+const errs=[];
+p.on("console",m=>{if(m.type()==="error")errs.push("console: "+m.text().slice(0,120))});
+p.on("pageerror",e=>errs.push("pageerror: "+e.message.slice(0,120)));
+p.on("requestfailed",r=>errs.push("reqfail: "+r.url().slice(0,70)));
+const t0=Date.now();
+await p.goto(URL,{waitUntil:"networkidle",timeout:60000});
+const load=Date.now()-t0;
+await p.waitForTimeout(1200);
+const fonts = await p.evaluate(()=>document.fonts.check('400 37px Newsreader'));
+const ov = await p.evaluate(()=>({sw:document.documentElement.scrollWidth,cw:document.documentElement.clientWidth}));
+// exercise one flow on the live site
+await p.getByText("Nandi Ridge Multispeciality").first().click();
+await p.waitForTimeout(600);
+await p.getByRole("button",{name:"Audit",exact:true}).click();
+await p.waitForTimeout(900);
+const withheld = await p.locator(".text-vermilion").first().textContent();
+await p.screenshot({path:".shots/live-audit.png",fullPage:true});
+const api = await p.evaluate(async()=>{const r=await fetch("/api/create-order");return {status:r.status,body:await r.json()}});
+console.log(JSON.stringify({url:URL,loadMs:load,fonts,overflowOK:ov.sw===ov.cw,withheld,api,errs},null,1));
+await b.close();
