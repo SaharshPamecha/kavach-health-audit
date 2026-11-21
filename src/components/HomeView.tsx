@@ -5,8 +5,10 @@ import {
   ArrowRight,
   Camera,
   Loader2,
+  Play,
   ShieldCheck,
   Sparkles,
+  X,
 } from "lucide-react";
 import { DEMO_CASES } from "@/lib/cases";
 import { auditCase } from "@/lib/engine";
@@ -22,6 +24,7 @@ export default function HomeView({ onPickCase, onScan, toast }: ViewProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [scan, setScan] = useState<ScanState>("idle");
   const [preview, setPreview] = useState<string | null>(null);
+  const [video, setVideo] = useState<string | null>(null);
 
   async function handleFile(file: File) {
     setScan("reading");
@@ -146,6 +149,25 @@ export default function HomeView({ onPickCase, onScan, toast }: ViewProps) {
         </p>
       </div>
 
+      {/* ── Narrated tour ────────────────────────────────────────── */}
+      <button
+        onClick={() => setVideo("/kavach-walkthrough.mp4")}
+        className="mt-4 flex w-full items-center gap-3 border border-rule bg-paper px-3 py-2.5 text-left transition-colors hover:border-emerald/40"
+      >
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-emerald/30 bg-emerald-50">
+          <Play className="h-3.5 w-3.5 fill-emerald text-emerald" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[12.5px] font-medium text-ink">
+            Watch the 70-second tour
+          </span>
+          <span className="block text-[10.5px] text-ink-2">
+            Narrated walkthrough of a ₹2,48,500 bill
+          </span>
+        </span>
+        <ArrowRight className="h-3.5 w-3.5 shrink-0 text-ink-3" />
+      </button>
+
       <Rule />
 
       {/* ── Demo cases ───────────────────────────────────────────── */}
@@ -258,6 +280,31 @@ export default function HomeView({ onPickCase, onScan, toast }: ViewProps) {
           </p>
         </div>
       </div>
+
+      {/* ── Fullscreen player ────────────────────────────────────── */}
+      {video && (
+        <div className="fixed inset-0 z-[70] flex flex-col bg-ink">
+          <div className="flex items-center justify-between px-4 py-3">
+            <span className="text-[9px] font-medium uppercase tracking-[0.18em] text-ivory/60">
+              Kavach · narrated walkthrough
+            </span>
+            <button
+              onClick={() => setVideo(null)}
+              aria-label="Close video"
+              className="flex h-11 w-11 items-center justify-center border border-ivory/20 text-ivory"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+          <video
+            src={video}
+            controls
+            autoPlay
+            playsInline
+            className="min-h-0 w-full flex-1 object-contain"
+          />
+        </div>
+      )}
     </div>
   );
 }

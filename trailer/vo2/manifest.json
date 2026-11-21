@@ -1,0 +1,40 @@
+{
+ "walk": [
+  {
+   "name": "w1",
+   "dur": 9.384,
+   "path": "/home/hermes/kavach-health-audit/trailer/vo2/w1.mp3"
+  },
+  {
+   "name": "w2",
+   "dur": 6.384,
+   "path": "/home/hermes/kavach-health-audit/trailer/vo2/w2.mp3"
+  },
+  {
+   "name": "w3",
+   "dur": 10.008,
+   "path": "/home/hermes/kavach-health-audit/trailer/vo2/w3.mp3"
+  },
+  {
+   "name": "w4",
+   "dur": 11.904,
+   "path": "/home/hermes/kavach-health-audit/trailer/vo2/w4.mp3"
+  },
+  {
+   "name": "w5",
+   "dur": 11.928,
+   "path": "/home/hermes/kavach-health-audit/trailer/vo2/w5.mp3"
+  },
+  {
+   "name": "w6",
+   "dur": 6.696,
+   "path": "/home/hermes/kavach-health-audit/trailer/vo2/w6.mp3"
+  },
+  {
+   "name": "w7",
+   "dur": 7.032,
+   "path": "/home/hermes/kavach-health-audit/trailer/vo2/w7.mp3"
+  }
+ ],
+ "walkTotal": 63.34
+}

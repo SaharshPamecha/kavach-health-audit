@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({headless:false,args:["--headless=old","--no-sandbox","--disable-gpu","--disable-dev-shm-usage"],executablePath:"/home/hermes/.cache/ms-playwright/chromium-1148/chrome-linux/chrome"});
+const p = await b.newPage({viewport:{width:390,height:844}});
+const errs=[]; p.on("pageerror",e=>errs.push(e.message.slice(0,80)));
+await p.goto("http://localhost:3500",{waitUntil:"networkidle"});
+const btn = await p.getByText("Watch the 70-second tour").count();
+await p.getByText("Watch the 70-second tour").click();
+await p.waitForTimeout(1200);
+const v = await p.evaluate(()=>{const el=document.querySelector("video"); return el?{src:el.getAttribute("src"), ready:el.readyState, dur:el.duration}:null});
+console.log("cta:",btn,"video:",JSON.stringify(v),"errs:",JSON.stringify(errs));
+await b.close();
