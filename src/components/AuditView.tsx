@@ -67,8 +67,8 @@ export default function AuditView({
       {/* ── Three stat cells ────────────────────────────────────── */}
       <div className="mt-4 grid grid-cols-3 divide-x divide-rule border border-rule bg-paper">
         <CellStat label="Billed" value={audit.billed} />
-        <CellStat label="Insurer pays" value={audit.insurerPays} tone="emerald" />
-        <CellStat label="You pay" value={audit.patientPays} />
+        <CellStat label="Insurer due" value={audit.insurerPays} tone="emerald" />
+        <CellStat label="You bear" value={audit.patientPays} />
       </div>
 
       {/* ── Doughnut ────────────────────────────────────────────── */}

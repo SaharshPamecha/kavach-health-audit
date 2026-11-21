@@ -8,3 +8,7 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+
+# local artefacts
+.shots/
+trailer/frames/

@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Kavach — trailer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ivory:#FAF9F6; --ink:#0F172A; --ink2:#5B6472; --ink3:#9AA0A9;
+    --emerald:#0F5132; --vermilion:#DC2626; --rule:#E0DCD2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  html,body{background:#111;overflow:hidden}
+  #stage{
+    position:relative;width:1080px;height:1350px;background:var(--ivory);
+    overflow:hidden;transform-origin:top left;
+  }
+  .serif{font-family:Newsreader,Georgia,serif}
+  .sans{font-family:Inter,system-ui,sans-serif}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .label{font-family:Inter,sans-serif;font-size:19px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3);font-weight:500}
+  .abs{position:absolute}
+
+  /* frames */
+  .scene{position:absolute;inset:0;opacity:0}
+  .hair{position:absolute;height:1px;background:var(--rule);transform-origin:left center}
+  .hair.ink{background:var(--ink)}
+
+  #hero{font-size:170px;line-height:.9;letter-spacing:-.045em;color:var(--ink);font-weight:500}
+  #heroWrap{left:104px;top:430px;position:absolute}
+
+  .rowline{position:absolute;left:104px;width:872px;height:64px;display:flex;align-items:baseline;justify-content:space-between}
+  .rowline .rl-name{font-family:Inter,sans-serif;font-size:25px;color:var(--ink);letter-spacing:-.005em}
+  .rowline .rl-amt{font-family:"JetBrains Mono",monospace;font-size:25px;color:var(--ink)}
+  .rowline .strike{position:absolute;left:0;height:2px;background:var(--vermilion);transform-origin:left center}
+
+  .chip{position:absolute;height:46px;padding:0 22px;border:1px solid var(--rule);
+        display:flex;align-items:center;font-family:Inter,sans-serif;font-size:20px;color:var(--ink2)}
+
+  #mark{left:104px;top:96px;display:flex;align-items:center;gap:16px}
+  #mark .sq{width:44px;height:44px;background:var(--emerald);display:flex;align-items:center;justify-content:center}
+  #mark .wm{font-family:Newsreader,serif;font-size:36px;color:var(--ink);letter-spacing:-.01em}
+
+  .bar{position:absolute;height:8px;background:var(--emerald);transform-origin:left center}
+  .bar.cut{background:rgba(220,38,38,.28)}
+
+  #final{position:absolute;inset:0;background:var(--emerald);opacity:0}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- persistent mark -->
+  <div id="mark" class="abs" style="opacity:0">
+    <div class="sq">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FAF9F6" stroke-width="2">
+        <path d="M12 3l7 3v6c0 4.4-3 8-7 9-4-1-7-4.6-7-9V6z"/><path d="M8.5 11.8l2.4 2.4 4.6-4.8"/>
+      </svg>
+    </div>
+    <div class="wm">Kavach</div>
+  </div>
+
+  <!-- ── S1 ─────────────────────────────────────────── -->
+  <div id="s1" class="scene">
+    <div class="abs" style="left:104px;top:300px" id="s1a">
+      <div class="label">The bill at discharge</div>
+    </div>
+    <div id="heroWrap"><div id="hero" class="mono">₹0</div></div>
+    <div id="s1rule" class="hair" style="left:104px;top:660px;width:872px"></div>
+    <div class="abs" style="left:104px;top:700px;width:700px" id="s1b">
+      <div class="serif" style="font-size:40px;line-height:1.28;color:var(--ink2);font-weight:300">
+        You have twenty minutes
+        <br/>to work out if it is right.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S2 ─────────────────────────────────────────── -->
+  <div id="s2" class="scene">
+    <div class="abs" style="left:104px;top:190px"><div class="label" id="s2lab">Line items, as printed</div></div>
+    <div id="rows"></div>
+    <div class="abs" style="left:104px;top:900px;width:872px" id="s2sum">
+      <div class="hair" style="position:relative;width:872px;margin-bottom:26px"></div>
+      <div class="label" style="color:var(--vermilion)">With no clause behind it</div>
+      <div class="mono" style="font-size:96px;letter-spacing:-.04em;color:var(--vermilion);line-height:1;margin-top:14px" id="s2num">₹0</div>
+    </div>
+  </div>
+
+  <!-- ── S3 ─────────────────────────────────────────── -->
+  <div id="s3" class="scene">
+    <div class="abs" style="left:104px;top:186px;width:872px" id="s3h">
+      <div class="serif" style="font-size:58px;line-height:1.1;letter-spacing:-.025em;color:var(--ink)">
+        The room-rent ratio is<br/>lawful on <span style="color:var(--emerald)">three lines</span>.
+      </div>
+    </div>
+    <div id="s3bars"></div>
+    <div class="abs" style="left:104px;top:1010px;width:880px" id="s3foot">
+      <div class="hair" style="position:relative;width:872px;margin-bottom:24px"></div>
+      <div class="serif" style="font-size:46px;line-height:1.2;letter-spacing:-.02em;color:var(--ink)">
+        It was applied to <span style="color:var(--vermilion)">five</span>.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S4 ─────────────────────────────────────────── -->
+  <div id="s4" class="scene">
+    <div class="abs" style="left:104px;top:190px"><div class="label">One tap · billing desk</div></div>
+    <div id="paper" class="abs" style="left:104px;top:260px;width:872px;height:760px;background:#fff;border:1px solid var(--rule)">
+      <div style="padding:52px 56px">
+        <div class="mono" style="font-size:17px;color:var(--ink3);letter-spacing:.1em">KV-26-8FJ2Q4</div>
+        <div class="serif" style="font-size:44px;line-height:1.18;color:var(--ink);margin-top:26px;letter-spacing:-.02em" id="s4subj">
+          Claim CC/2026/11/882314
+        </div>
+        <div id="s4body" style="margin-top:30px">
+          <div class="serif" style="font-size:25px;line-height:1.62;color:var(--ink2);font-weight:300">
+            The proportionate deduction applies to room, surgeon and OT charges.
+            It was applied to a pharmacy invoice and a surgical stapler. Please
+            restore <span class="mono" style="color:var(--vermilion);font-weight:500">₹31,111</span>.
+          </div>
+        </div>
+        <div id="langs" style="margin-top:44px;display:flex;gap:14px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S5 ─────────────────────────────────────────── -->
+  <div id="final"></div>
+  <div id="s5" class="scene">
+    <div class="abs" style="left:104px;top:520px;width:880px">
+      <div class="serif" style="font-size:104px;line-height:.98;letter-spacing:-.045em;color:var(--ivory);font-weight:400" id="s5h">
+        The bill is not<br/>the final word.
+      </div>
+      <div id="s5rule" style="height:1px;background:rgba(250,249,246,.25);width:872px;margin:52px 0 34px;transform-origin:left"></div>
+      <div class="sans" style="font-size:24px;color:rgba(250,249,246,.62);letter-spacing:.02em" id="s5sub">
+        Audit every line. Cite every clause.
+      </div>
+    </div>
+  </div>
+
+  <!-- persistent footer wordmark for final -->
+  <div id="s5mark" class="abs" style="left:104px;top:96px;opacity:0;display:flex;align-items:center;gap:16px">
+    <div class="sq" style="width:44px;height:44px;background:rgba(250,249,246,.14);display:flex;align-items:center;justify-content:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FAF9F6" stroke-width="2">
+        <path d="M12 3l7 3v6c0 4.4-3 8-7 9-4-1-7-4.6-7-9V6z"/><path d="M8.5 11.8l2.4 2.4 4.6-4.8"/>
+      </svg>
+    </div>
+    <div class="serif" style="font-size:36px;color:var(--ivory)">Kavach</div>
+  </div>
+</div>
+
+<script>
+const DURATION = 20.0;
+const $ = (s) => document.querySelector(s);
+const stage = $('#stage');
+
+function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
+function seg(t,s,d){return clamp((t-s)/d,0,1)}
+function eo(p){return 1-Math.pow(1-p,3)}
+function eio(p){return p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2}
+function fade(el,p){ if(el) el.style.opacity = p; }
+function rise(el,p,dist){ if(el) el.style.transform = `translateY(${(1-p)*(dist||26)}px)`; }
+
+// ---- build S2 rows ----
+const ROWS = [
+  ["Room rent · 3 nights","27,000",false],
+  ["Surgeon fee","83,000",false],
+  ["OT charges","35,000",false],
+  ["Pharmacy & IV medicines","42,000",true],
+  ["Surgical stapler","28,000",true],
+  ["Admission & registration","2,000",true],
+];
+const rowsWrap = $('#rows');
+ROWS.forEach(([name,amt,bad],i)=>{
+  const d = document.createElement('div');
+  d.className='rowline';
+  d.style.top = (272 + i*92) + 'px';
+  d.style.opacity = 0;
+  d.innerHTML = `<div class="rl-name">${name}</div><div class="rl-amt ${bad?'':'ok'}">₹${amt}</div>`;
+  if(bad){
+    const st = document.createElement('div');
+    st.className='strike'; st.style.top='50%'; st.style.width='0px';
+    d.appendChild(st);
+  }
+  rowsWrap.appendChild(d);
+});
+
+// ---- build S3 rows ----
+const S3 = {
+  bars: $('#s3bars'),
+  items: [
+    ["Room rent","27,000",0.556,true,0],
+    ["Surgeon fee","83,000",0.556,true,0],
+    ["OT charges","35,000",0.556,true,0],
+    ["Pharmacy","42,000",1.0,false,1],
+    ["Surgical stapler","28,000",1.0,false,2],
+  ],
+};
+const bars = [];
+S3.items.forEach(([name,amt,frac,inside,idx],i)=>{
+  const top = 306 + i*118;
+  const wrap = document.createElement('div');
+  wrap.className='abs';
+  wrap.style.cssText = `left:104px;top:${top}px;width:872px;opacity:0`;
+  wrap.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+      <div class="sans" style="font-size:24px;color:var(--ink)">${idx>0?'<span style="color:var(--emerald);margin-right:12px">✦</span>':''}${name}</div>
+      <div class="mono" style="font-size:21px;color:var(--ink3)">₹${amt}</div>
+    </div>
+    <div style="position:relative;height:8px;width:872px;background:#EDEAE2">
+      <div class="keep" style="position:absolute;inset:0;width:0%;background:var(--emerald);transform-origin:left"></div>
+    </div>`;
+  S3.bars.appendChild(wrap);
+  bars.push({el:wrap, keep:wrap.querySelector('.keep'), frac, inside, idx});
+});
+
+// ---- build S4 language chips ----
+const LANGS=['English','हिन्दी','ಕನ್ನಡ'];
+const langWrap = $('#langs');
+const chips = LANGS.map((l,i)=>{
+  const d=document.createElement('div');
+  d.style.cssText=`height:54px;padding:0 26px;display:flex;align-items:center;border:1px solid var(--rule);
+    font-family:Inter,sans-serif;font-size:21px;color:var(--ink2);opacity:0`;
+  d.textContent=l;
+  langWrap.appendChild(d);
+  return d;
+});
+
+function render(t){
+  // S1 0 → 3.6
+  const s1 = t < 3.9 ? 1 : 0;
+  fade($('#s1'), t<3.25 ? 1 : clamp(1-(t-3.25)/0.35,0,1));
+  $('#hero').textContent = '₹' + Math.round(248500*eo(seg(t,0.45,2.25))).toLocaleString('en-IN');
+  const p1 = eo(seg(t,0.15,0.55));
+  fade($('#s1a'), p1); rise($('#s1a'), p1, 18);
+  const p1b = eo(seg(t,2.1,0.6));
+  fade($('#s1rule'), p1b);
+  $('#s1rule').style.transform = `scaleX(${p1b})`;
+  fade($('#s1b'), eo(seg(t,2.3,0.7)));
+  rise($('#s1b'), eo(seg(t,2.3,0.7)), 20);
+
+  // S2 3.5 → 8.2
+  const s2on = t>=3.4 && t<8.3;
+  fade($('#s2'), s2on ? clamp((t-3.4)/0.4,0,1) * clamp((8.3-t)/0.35,0,1) : 0);
+  fade($('#s2lab'), eo(seg(t,3.45,0.5)));
+  [...rowsWrap.children].forEach((el,i)=>{
+    const p = eo(seg(t, 3.65 + i*0.16, 0.45));
+    el.style.opacity = p;
+    el.style.transform = `translateY(${(1-p)*14}px)`;
+  });
+  // strikes
+  [...rowsWrap.children].forEach((el,i)=>{
+    const st = el.querySelector('.strike');
+    if(!st) return;
+    const p = eio(seg(t, 5.15 + (i-3)*0.22, 0.42));
+    st.style.width = (872*p)+'px';
+  });
+  const pSum = eo(seg(t,5.75,0.7));
+  fade($('#s2sum'), pSum); rise($('#s2sum'), pSum, 18);
+  $('#s2num').textContent = '₹' + Math.round(31111*eo(seg(t,5.8,0.9))).toLocaleString('en-IN');
+
+  // S3 8.2 → 13.6
+  const s3on = t>=8.25 && t<13.7;
+  fade($('#s3'), s3on ? clamp((t-8.25)/0.45,0,1)*clamp((13.7-t)/0.35,0,1) : 0);
+  const h = eo(seg(t,8.35,0.7));
+  fade($('#s3h'), h); rise($('#s3h'), h, 24);
+  bars.forEach((b,i)=>{
+    const p = eo(seg(t, 9.0 + i*0.12, 0.5));
+    b.el.style.opacity = p;
+    b.el.style.transform = `translateY(${(1-p)*14}px)`;
+    const grow = eio(seg(t, 9.4 + i*0.12, 0.6));
+    b.keep.style.width = (b.frac*100*grow) + '%';
+    if(!b.inside){
+      b.keep.style.background = 'var(--vermilion)';
+      b.keep.style.opacity = .3 + 0.0;
+    }
+  });
+  const f = eo(seg(t,11.9,0.7));
+  fade($('#s3foot'), f); rise($('#s3foot'), f, 18);
+
+  // S4 13.5 → 17.4
+  const s4on = t>=13.6 && t<17.5;
+  fade($('#s4'), s4on ? clamp((t-13.6)/0.45,0,1)*clamp((17.5-t)/0.3,0,1) : 0);
+  const pp = eo(seg(t,13.7,0.65));
+  $('#paper').style.transform = `translateY(${(1-pp)*30}px)`;
+  $('#paper').style.opacity = pp;
+  fade($('#s4subj'), eo(seg(t,14.0,0.5)));
+  fade($('#s4body'), eo(seg(t,14.35,0.8)));
+  chips.forEach((c,i)=>{
+    const p = eo(seg(t,15.3 + i*0.18, 0.4));
+    c.style.opacity = p;
+    if(i===2){
+      c.style.borderColor='var(--emerald)';
+      c.style.background='var(--emerald)';
+      c.style.color='#FAF9F6';
+    }
+  });
+
+  // S5 17.2 → end
+  const s5on = t>=17.2;
+  const wipe = eio(seg(t,17.2,0.75));
+  $('#final').style.opacity = wipe ? 1 : 0;
+  $('#final').style.clipPath = `inset(${(1-wipe)*100}% 0 0 0)`;
+  fade($('#s5'), clamp((t-17.9)/0.4,0,1));
+  const hh = eo(seg(t,17.95,0.8));
+  $('#s5h').style.transform = `translateY(${(1-hh)*26}px)`;
+  $('#s5h').style.opacity = hh;
+  const rr = eio(seg(t,18.45,0.6));
+  $('#s5rule').style.transform = `scaleX(${rr})`;
+  fade($('#s5sub'), eo(seg(t,18.7,0.6)));
+  $('#s5mark').style.opacity = wipe;
+
+  // mark fades in with S3
+  const mk = clamp((t-8.4)/0.5,0,1) * (t<17.2?1:0);
+  fade($('#mark'), t>=8.4 && t<17.2 ? mk : (t>=17.2?0:$('#mark').style.opacity));
+}
+
+window.__seek = (t) => { render(t); return true; };
+window.__duration = DURATION;
+
+// fit stage to viewport for preview only
+function fit(){
+  const s = Math.min(window.innerWidth/1080, window.innerHeight/1350);
+  stage.style.transform = `scale(${s})`;
+}
+fit(); window.addEventListener('resize', fit);
+
+render(0);
+document.fonts.ready.then(()=>{ window.__ready = true; });
+</script>
+</body>
+</html>
