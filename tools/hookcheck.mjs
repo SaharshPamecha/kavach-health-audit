@@ -1,0 +1,10 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({headless:false,args:["--headless=old","--no-sandbox","--disable-gpu","--disable-dev-shm-usage"],executablePath:"/home/hermes/.cache/ms-playwright/chromium-1148/chrome-linux/chrome"});
+const p = await b.newPage({viewport:{width:390,height:844}});
+const errs=[]; p.on("console",m=>{if(m.type()==="error")errs.push(m.text().slice(0,90))});
+await p.goto("https://porter-kansas-knowledge-marks.trycloudflare.com",{waitUntil:"networkidle"});
+await p.getByText("Nandi Ridge Multispeciality").first().click();
+await p.waitForTimeout(700);
+const hook = await p.getByText(/55.6% room-rent ratio to a pharmacy bill/).count();
+console.log("hook visible:", hook>0, "| errors:", JSON.stringify(errs.slice(0,3)));
+await b.close();

@@ -63,6 +63,12 @@ export default function BillView({
         <Field k="Discharged" v={c.discharge} />
       </div>
 
+      {c.hook && (
+        <p className="mt-4 border-l-2 border-vermilion bg-paper py-2.5 pl-3 pr-2.5 font-serif text-[13.5px] italic leading-[1.5] text-ink">
+          {c.hook}
+        </p>
+      )}
+
       {/* Total */}
       <div className="mt-5">
         <div className="flex items-end justify-between gap-3">

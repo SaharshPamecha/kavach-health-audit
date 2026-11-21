@@ -1,0 +1,12 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({headless:false,args:["--headless=old","--no-sandbox","--disable-gpu","--disable-dev-shm-usage"],executablePath:"/home/hermes/.cache/ms-playwright/chromium-1148/chrome-linux/chrome"});
+const p = await b.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
+await p.goto("https://porter-kansas-knowledge-marks.trycloudflare.com",{waitUntil:"networkidle"});
+await p.getByText("Nandi Ridge Multispeciality").first().click();
+await p.waitForTimeout(500);
+await p.getByRole("button",{name:"Audit",exact:true}).click();
+await p.waitForTimeout(900);
+const txt = await p.locator("text=Actually paid by the TPA").locator("..").locator("..").innerText();
+console.log("GAP BLOCK:\n"+txt);
+await p.screenshot({path:".shots/live-audit2.png",fullPage:true});
+await b.close();
