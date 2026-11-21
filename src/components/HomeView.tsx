@@ -173,7 +173,7 @@ export default function HomeView({ onPickCase, onScan, toast }: ViewProps) {
       {/* ── Demo cases ───────────────────────────────────────────── */}
       <div className="flex items-end justify-between">
         <div className="flex items-baseline gap-2.5">
-          <span className="font-mono text-[10px] tnum text-ink-3">01</span>
+          <span className="font-mono text-[10px] tnum text-ink-2">01</span>
           <h2 className="font-serif text-[19px] leading-none text-ink">
             Or open a recorded case
           </h2>
@@ -232,7 +232,7 @@ export default function HomeView({ onPickCase, onScan, toast }: ViewProps) {
       {/* ── How it works ─────────────────────────────────────────── */}
       <div className="pb-8">
         <div className="flex items-baseline gap-2.5">
-          <span className="font-mono text-[10px] tnum text-ink-3">02</span>
+          <span className="font-mono text-[10px] tnum text-ink-2">02</span>
           <h2 className="font-serif text-[19px] leading-none text-ink">
             Three moves
           </h2>

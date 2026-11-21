@@ -86,7 +86,7 @@ export function Pill({
   const tones = {
     neutral: "border-rule text-ink-2 bg-paper",
     emerald: "border-emerald/25 text-emerald bg-emerald-50",
-    vermilion: "border-vermilion/25 text-vermilion bg-vermilion-50",
+    vermilion: "border-vermilion/30 text-vermilion-700 bg-vermilion-50",
     amber: "border-amber/25 text-amber bg-amber-50",
   };
   return (
@@ -246,7 +246,7 @@ export function SectionHead({
   return (
     <div className="mb-3 flex items-end justify-between gap-3">
       <div className="flex items-baseline gap-2.5">
-        <span className="font-mono text-[10px] tnum text-ink-3">{index}</span>
+        <span className="font-mono text-[10px] tnum text-ink-2">{index}</span>
         <h2 className="font-serif text-[19px] leading-none text-ink">{title}</h2>
       </div>
       {right}
