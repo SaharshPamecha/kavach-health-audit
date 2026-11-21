@@ -25,6 +25,9 @@ export default function AuditView({
 
   const tpaPart = Math.round(audit.illegalTotal * (1 - settings.coPay / 100));
   const hospPart = audit.hospitalOvercharge;
+  const tpaPaid = audit.buckets.find((b) => b.key === "insurer")?.value ?? 0;
+  const gap = Math.max(0, audit.insurerPays - tpaPaid);
+  const paidRatio = audit.insurerPays > 0 ? tpaPaid / audit.insurerPays : 1;
 
   return (
     <div className="px-4 pt-5">
@@ -69,6 +72,42 @@ export default function AuditView({
         <CellStat label="Billed" value={audit.billed} />
         <CellStat label="Insurer due" value={audit.insurerPays} tone="emerald" />
         <CellStat label="You bear" value={audit.patientPays} />
+      </div>
+
+      {/* ── What they paid vs what was due ──────────────────────── */}
+      <div className="mt-2.5 border border-rule bg-paper px-3.5 py-3">
+        <div className="flex items-baseline justify-between gap-3">
+          <Label className="text-[9px]">Actually paid by the TPA</Label>
+          <span className="font-mono text-[12px] tnum text-ink">{inr(tpaPaid)}</span>
+        </div>
+        <div className="relative mt-2 h-[6px] w-full overflow-hidden bg-ivory">
+          <div
+            className="absolute inset-y-0 left-0 bg-emerald transition-[width] duration-500"
+            style={{ width: `${Math.max(0, Math.min(1, paidRatio)) * 100}%` }}
+          />
+          <div
+            className="absolute inset-y-0 right-0 bg-vermilion/25 transition-[width] duration-500"
+            style={{ width: `${(1 - Math.max(0, Math.min(1, paidRatio))) * 100}%` }}
+          />
+        </div>
+        <div className="mt-2 flex items-baseline justify-between gap-3">
+          <span className="text-[10px] leading-none text-ink-3">
+            What the rules allow
+          </span>
+          <span className="font-mono text-[12px] tnum text-emerald">
+            {inr(audit.insurerPays)}
+          </span>
+        </div>
+        {gap > 0 && (
+          <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-rule pt-2">
+            <span className="text-[10px] uppercase tracking-label text-ink-2">
+              The gap
+            </span>
+            <span className="font-mono text-[13px] tnum font-medium text-vermilion">
+              {inr(gap)}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* ── Doughnut ────────────────────────────────────────────── */}
