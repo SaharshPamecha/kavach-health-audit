@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ivory: #faf9f6;
+  --paper: #ffffff;
+  --ink: #0f172a;
+  --ink-2: #5b6472;
+  --ink-3: #8a909c;
+  --emerald: #0f5132;
+  --vermilion: #dc2626;
+  --rule: #e6e2d8;
+  --rule-strong: #d6d1c4;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-feature-settings: "cv11", "ss01";
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  background: #0f5132;
+  color: #faf9f6;
+}
+
+/* ── Typographic primitives ───────────────────────────────────────── */
+.label {
+  font-size: 10.5px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.hairline {
+  border-color: var(--rule);
+}
+
+/* Editorial rule with a small square terminal — the "ledger" motif */
+.ledger-rule {
+  position: relative;
+  height: 1px;
+  background: var(--rule);
+}
+.ledger-rule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  background: var(--emerald);
+}
+
+/* ── Focus ────────────────────────────────────────────────────────── */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Range sliders: 44px touch target, hairline aesthetic ─────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--rule-strong);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -11px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 2px solid var(--emerald);
+  box-shadow: 0 0 0 1px var(--paper), 0 2px 6px rgba(15, 23, 42, 0.18);
+}
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: var(--rule-strong);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 2px solid var(--emerald);
+}
+
+/* ── Scrollbars ───────────────────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.thin-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--rule-strong);
+  border-radius: 4px;
+}
+
+/* ── Paper card ───────────────────────────────────────────────────── */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+
+/* ── Desk mode: the screen you flip at the billing counter ────────── */
+.desk {
+  background: #0b3e27;
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(255, 255, 255, 0.07), transparent 60%),
+    linear-gradient(#0b3e27, #072b1b);
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Print: only the dossier ──────────────────────────────────────── */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-sheet {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+  @page {
+    margin: 16mm;
+  }
+}
+.print-only {
+  display: none;
+}
