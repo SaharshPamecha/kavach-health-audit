@@ -70,7 +70,7 @@ const EN: Strings = {
     arithmetic: "The amount charged does not multiply out from quantity and rate.",
   },
   titleByKind: {
-    illegal_proportionate: "Illegal proportionate cut",
+    illegal_proportionate: "Deduction outside the rules",
     phantom_clause: "Deduction with no clause in the policy",
     icu_exception: "ICU exception ignored",
     whole_implant: "Whole implant disallowed",
@@ -113,7 +113,7 @@ const HI: Strings = {
     arithmetic: "वसूली गई राशि मात्रा और दर के गुणनफल से मेल नहीं खाती।",
   },
   titleByKind: {
-    illegal_proportionate: "अवैध आनुपातिक कटौती",
+    illegal_proportionate: "नियमों के बाहर की कटौती",
     phantom_clause: "पॉलिसी में उल्लेख न होने पर भी कटौती",
     icu_exception: "ICU अपवाद की अनदेखी",
     whole_implant: "पूरा इम्प्लांट अस्वीकृत",
@@ -156,7 +156,7 @@ const KN: Strings = {
     arithmetic: "ವಸೂಲಿ ಮಾಡಿದ ಮೊತ್ತವು ಪ್ರಮಾಣ ಮತ್ತು ದರದ ಗುಣಲಬ್ಧಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ.",
   },
   titleByKind: {
-    illegal_proportionate: "ಅಕ್ರಮ ಅನುಪಾತ ಕಡಿತ",
+    illegal_proportionate: "ನಿಯಮಗಳ ಹೊರತಾದ ಕಡಿತ",
     phantom_clause: "ಪಾಲಿಸಿಯಲ್ಲಿ ಇಲ್ಲದ ಆಧಾರದ ಮೇಲೆ ಕಡಿತ",
     icu_exception: "ICU ವಿನಾಯಿತಿ ನಿರ್ಲಕ್ಷ್ಯ",
     whole_implant: "ಇಡೀ ಇಂಪ್ಲಾಂಟ್ ತಿರಸ್ಕೃತ",

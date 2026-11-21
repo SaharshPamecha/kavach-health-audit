@@ -67,15 +67,17 @@ The **Consumables Cover Add-on** toggle simulates a policy that pays List-I item
 
 > An earlier draft of this project cited the 2019 *exclusions* circular (177/09/2019) for these lists. That is a category error — 177/09/2019 contains the table of permanently excluded diseases, not the itemisation annexure. The lists live in **176/09/2019**.
 
-### 3. Reconciliation, not rounding
+### 3. Allocation, stated honestly
 
-The four doughnut buckets are constructed so they sum to the bill in every slider configuration:
+The four doughnut buckets sum to the bill in every slider configuration:
 
 ```
-insurerActuallyPays + withheldUnlawfully + hospitalOverBilled + genuinelyYours === totalBilled
+insurerActuallyPays + withheld + hospitalOverBilled + genuinelyYours === totalBilled
 ```
 
-`audit.balanced` asserts it, and the Audit tab prints the equation. If it ever fails, the UI says so rather than showing a plausible-looking number.
+It is important not to oversell this. That identity holds **by construction** — `genuinelyYours` is the residual after the rule-based cuts, so the sum balancing is not independent evidence that the cuts are right. What *is* independently checked is that the line items sum to the stated bill total (`integrityCheck`), and every line carries its own `idealAllowed` / `tpaAllowed` pair that can be recomputed by hand.
+
+The Audit tab prints the equation because a family deserves to see where each rupee went, not because arithmetic that balances is arithmetic that's correct.
 
 ### 4. What makes a flag credible
 
@@ -182,6 +184,8 @@ The visual argument is **the fixed-cost shield**: three bars shrink under the ra
 
 - **Illustrative cases.** The three records are composites written to be arithmetically exact, not real patient data.
 - **Citations are encoded, not fetched.** `src/lib/rules.ts` holds the rule text. A production build would re-validate against the IRDAI master circular on a schedule.
+- **Citation currency is a live risk.** IRDAI consolidated 55 health circulars in May 2024. Two independent research passes disagreed on whether **176/09/2019** (the itemisation lists) survives as a standalone instrument after that consolidation. The engine therefore treats the **policy wording** as primary authority and cites the 2019 lists as the basis the wording was drafted against — not as live regulation. A rule that says "repealed, but your policy still says it" is honest and defensible; one that pretends a withdrawn circular is live is not.
+- **The counterparty matters.** A TPA has no contract with the patient. Deductions are contested against the **insurer's Grievance Redressal Officer**, with the TPA copied, because the insurer is answerable for its TPA. Hospital over-billing is a different defendant with a different remedy. A single letter addressed to both is legally misaddressed — a known limitation of this build.
 - **Not legal or medical advice.** Kavach produces a factual claim objection for you to send in your own name.
 - **Translations.** Hindi and Kannada letters are drafted in-house and should be reviewed by a native speaker before being relied on for a real filing. Statutory citations deliberately stay in English.
 - **Vision extraction is best-effort.** Every extracted figure is editable, and the arithmetic mismatch detector exists precisely because OCR will sometimes be wrong.

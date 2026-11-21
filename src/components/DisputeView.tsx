@@ -281,7 +281,7 @@ export default function DisputeView({
         <div className="no-print mt-3 pb-8">
           <Button onClick={() => onNav("dossier")} variant="primary" className="w-full">
             <Loader2 className="hidden" />
-            Get the certified dossier — ₹49
+            Get the clause-linked dossier — ₹49
             <ArrowRight className="h-3.5 w-3.5" />
           </Button>
         </div>

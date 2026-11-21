@@ -101,7 +101,7 @@ export function auditCase(c: DemoCase, opts: EngineOptions): Audit {
     },
     {
       key: "tpa",
-      label: "Unlawfully withheld",
+      label: "Deducted without basis",
       value: tpaRecovery,
       color: "#DC2626",
     },

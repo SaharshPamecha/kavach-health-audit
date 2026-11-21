@@ -39,7 +39,7 @@ export async function POST(req: Request) {
         currency: "INR",
         receipt: `kavach_${Date.now()}`,
         notes: {
-          product: "Certified TPA Dispute Dossier",
+          product: "Clause-linked TPA Dispute Dossier",
           case_ref: body.caseRef ?? "UNKNOWN",
         },
       }),

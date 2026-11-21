@@ -65,17 +65,39 @@ They have the data and a conflict of interest: they're paid by the insurer to ad
 
 ---
 
+## Landscape — what already exists
+
+A judge who has done homework will know some of this. Saying it first is worth more than pretending otherwise.
+
+| Product | What it does | What it doesn't |
+|---|---|---|
+| **BillOkay** (India) | Photo → audit against CGHS / NPPA / PMJAY rate cards → dispute letter, on WhatsApp. Free at launch. | Audits the *hospital's prices* against government rate cards. Never reads your policy or a TPA deduction sheet. |
+| **Drapto / ClaimAuditLab** (India) | Publish the proportionate-deduction arithmetic head-by-head, citing 151/06/2020. Free. | Generic calculators on self-entered data. No OCR, no policy ingestion, no letter, no consumer distribution. |
+| **Insurance Samadhan** (India) | Human-run claim grievance recovery, success fee. | After the fact, human-heavy, no line-item arithmetic. |
+| **ClaimBuddy** (India) | Humans stationed at hospital insurance desks. | Service, not software. No clause-level audit. |
+| **Medi Assist / Paramount / Vidal** | TPA-side adjudication at scale — 8.9m+ claims, ₹21,108 cr premium under management (FY25). | They *are* the deduction. No incentive to audit it. |
+| **Goodbill / Resolve** (US) | Patient-side bill negotiation, 20–25% of savings. | Chargemaster and upcoding disputes, not insurance-contract disputes. Economics don't transfer to a ₹31,000 average Indian claim. |
+| **Claimable / Fight Health Insurance** (US) | AI-drafted denial appeals, $39.95 flat / free. | Denial-and-appeal shaped: argues medical necessity, never audits line arithmetic. |
+
+**The gap, stated narrowly:** every consumer tool audits the **bill** against a rate card. None audits the **adjudication** against the policy. Those are different documents, different counterparties, and different remedies — "your hospital is expensive" versus "your insurer's arithmetic departs from the clause it filed".
+
+**Do not say "nobody has built this."** Say: *"BillOkay tells you the hospital overcharged. We tell you the insurer's deduction has no clause. Different defendant."*
+
+---
+
 ## What NOT to claim
 
 Protect yourself. These are the sentences that get you caught.
 
 | Don't say | Say instead |
 |---|---|
-| "This is illegal" | "This has no clause behind it" / "this is a regulatory breach" |
+| "This is illegal" | "This has no clause behind it" / "not payable under clause X" |
+| "Certified dossier" | "Clause-linked dossier" — nothing certifies a ₹49 PDF |
 | "IRDAI mandates this today" | "The policy wording carries this standard" |
 | "These are real patient cases" | "Illustrative composites — the arithmetic is exact" |
 | "We'll get your money back" | "We give you the document that starts the clock" |
 | "AI reads your bill perfectly" | "AI reads it, you correct it, the arithmetic is checked" |
+| "Nobody has built this" | "BillOkay audits the bill; we audit the adjudication" |
 
 ---
 

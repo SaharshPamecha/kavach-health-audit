@@ -137,7 +137,7 @@ export const FLAG_META: Record<
   FlagKind,
   { label: string; tone: "illegal" | "hospital" | "policy" }
 > = {
-  illegal_proportionate: { label: "Illegal proportionate cut", tone: "illegal" },
+  illegal_proportionate: { label: "Deduction outside the rules", tone: "illegal" },
   phantom_clause: { label: "Phantom clause", tone: "illegal" },
   icu_exception: { label: "Exception ignored", tone: "illegal" },
   whole_implant: { label: "Whole implant disallowed", tone: "illegal" },

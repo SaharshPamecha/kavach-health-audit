@@ -98,7 +98,7 @@ export default function DossierView({
         amount: order.amount,
         currency: "INR",
         name: "Kavach",
-        description: "Certified TPA Dispute Dossier",
+        description: "Clause-linked TPA Dispute Dossier",
         order_id: order.orderId,
         theme: { color: "#0F5132" },
         prefill: { name: c.patientName },
@@ -170,7 +170,7 @@ export default function DossierView({
       <div className="mt-5 border border-emerald/30 bg-paper">
         <div className="flex items-center justify-between bg-emerald px-3.5 py-2">
           <span className="text-[8.5px] font-medium uppercase tracking-[0.18em] text-ivory/80">
-            Kavach · Certified dossier
+            Kavach · Clause-linked dossier
           </span>
           <ShieldCheck className="h-3.5 w-3.5 text-ivory/80" />
         </div>
@@ -282,7 +282,7 @@ export default function DossierView({
                   </>
                 ) : (
                   <>
-                    Pay ₹49 & certify
+                    Pay ₹49 & unlock
                     <ArrowRight className="h-3.5 w-3.5" />
                   </>
                 )}

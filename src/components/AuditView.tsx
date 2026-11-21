@@ -118,7 +118,7 @@ export default function AuditView({
           right={
             audit.balanced ? (
               <span className="text-[9.5px] font-medium uppercase tracking-label text-emerald">
-                reconciles
+                fully allocated
               </span>
             ) : null
           }
@@ -323,9 +323,9 @@ export default function AuditView({
           </div>
           <div className="mt-2.5 flex items-center gap-1.5 border-t border-rule pt-2.5">
             <Scale className="h-3 w-3 text-emerald" />
-            <span className="text-[10px] text-ink-2">
-              Every rupee of the bill is accounted for. Nothing is rounded into
-              a headline.
+            <span className="text-[10px] leading-relaxed text-ink-2">
+              Every rupee is allocated. &ldquo;Genuinely yours&rdquo; is the
+              balance after the rule-based cuts, not a separate estimate.
             </span>
           </div>
         </div>
