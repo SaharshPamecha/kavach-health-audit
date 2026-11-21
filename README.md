@@ -11,10 +11,10 @@ Built for **Fix My Itch Buildathon — Razorpay Rize × AILC**, Bengaluru, 21 No
 | File | What it is |
 |---|---|
 | `trailer/kavach-trailer-vo.mp4` | 26-second narrated spot — 1080×1350, Gemini 2.5 TTS (voice: Charon) |
-| `trailer/kavach-walkthrough.mp4` | Narrated end-to-end walkthrough of the running app |
+| `trailer/kavach-walkthrough.mp4` | ~57-second narrated walkthrough of the running app, same voice |
 | `PITCH.md` | Demo choreography, the three numbers, and the questions you will be asked |
 
-Both videos are playable from the home screen of the app itself, so the demo URL needs no separate hosting.
+Both are H.264 High/L4.0 + AAC-LC with `faststart`, so they play on any phone without a plugin. Playable from the home screen of the app itself, so the demo URL needs no separate hosting.
 
 > Addressing shortlist **#21 — "Why do hospitals hide procedure pricing from patients?"** (itch score 74.5, Healthtech) and **#10 — "Why don't people understand the insurance policies they buy?"** (itch score 82, FinTech).
 

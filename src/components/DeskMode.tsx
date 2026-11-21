@@ -55,6 +55,12 @@ export default function DeskMode({
             Out of {inr(audit.billed)} billed. Under IRDAI rules and the schedule
             of policy {c.policy.policyNo}.
           </div>
+          {audit.hospitalOvercharge > 0 && (
+            <div className="mt-2.5 max-w-[32ch] border-l border-ivory/25 pl-2.5 text-[11px] leading-snug text-ivory/55">
+              A further {inr(audit.hospitalOvercharge)} on this bill is for items
+              IRDAI's lists say the hospital may not charge separately.
+            </div>
+          )}
         </div>
 
         <div className="mt-8 space-y-3">

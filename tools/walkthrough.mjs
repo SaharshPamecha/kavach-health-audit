@@ -4,8 +4,9 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 const BASE = "http://localhost:3500";
-const VO = "/home/hermes/kavach-health-audit/trailer/vo";
-const OUT = "/home/hermes/kavach-health-audit/trailer/walk_frames";
+const VO = process.env.VO || "/home/hermes/kavach-health-audit/trailer/vo";
+const OUT = process.env.OUTDIR || "/home/hermes/kavach-health-audit/trailer/walk_frames";
+const FINAL = process.env.FINAL || "/home/hermes/kavach-health-audit/trailer/kavach-walkthrough.mp4";
 const FPS = 10;
 const PAD = 0.55; // breathing room after each line
 
@@ -127,7 +128,7 @@ segs.forEach((s, i) => {
   mixes.push(`[a${i}]`);
 });
 
-const out = "/home/hermes/kavach-health-audit/trailer/kavach-walkthrough.mp4";
+const out = FINAL;
 execFileSync("ffmpeg", [
   "-y", "-loglevel", "error",
   "-framerate", String(FPS), "-i", path.join(OUT, "f%05d.png"),
