@@ -6,9 +6,11 @@ Read this on your phone at the venue. Numbers first, adjectives never.
 
 ## The 20-second opener
 
-> "A family at a discharge counter gets a bill with forty line items and twenty minutes to decide if it's right. Nobody in that room can tell which rupees are lawful. The TPA has already adjudicated. The paper says 'non-payable' and everyone assumes it is.
+> "A family at a discharge counter gets a bill with forty line items and twenty minutes to decide if it's right. Nobody in that room can tell which rupees are lawful.
 >
-> Kavach tells you which rupees are *not*. It re-does the claim arithmetic against IRDAI's own rules, and hands you a letter that quotes the clause back."
+> IRDAI's own figures: insurers settle 82% of health claims by count but only 71.3% by value. Claims aren't rejected — they're shaved, line by line.
+>
+> Kavach tells you which shave was lawful. It re-does the claim arithmetic against the policy and the regulator's own rules, and hands you a letter that quotes the clause back."
 
 ---
 

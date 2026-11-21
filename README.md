@@ -12,6 +12,8 @@ Built for **Fix My Itch Buildathon — Razorpay Rize × AILC**, Bengaluru, 21 No
 
 ## The problem, stated precisely
 
+IRDAI's own numbers make the case better than any pitch deck: in FY24 insurers settled **82% of health claims by count but only 71.3% by value**. Claims are not being rejected at the door — they are being *shaved*, claim by claim, and nobody tells the family which shave was lawful.
+
 The itch isn't that bills are *high*. It's that nobody can tell **which rupees are lawful**. A family at the counter has twenty minutes and a piece of paper with forty line items. The TPA has already adjudicated. The deduction sheet says "non-payable" and everyone assumes it is.
 
 Three things are true at once and only a rule engine can separate them:
