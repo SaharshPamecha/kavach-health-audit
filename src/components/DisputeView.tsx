@@ -13,7 +13,13 @@ import {
 } from "lucide-react";
 import { inr } from "@/lib/format";
 import type { Audit } from "@/lib/types";
-import { buildLetter, LANG_LABEL, type Lang } from "@/lib/letter";
+import {
+  buildHospitalLetter,
+  buildLetter,
+  LANG_LABEL,
+  totalDisputed,
+  type Lang,
+} from "@/lib/letter";
 import { FLAG_META } from "@/lib/rules";
 import { Button, Label, Pill, SectionHead, Rule } from "./ui";
 import type { ViewProps } from "./KavachApp";
@@ -29,6 +35,7 @@ export default function DisputeView({
   onDesk,
 }: ViewProps & { audit: Audit }) {
   const [lang, setLang] = useState<Lang>("en");
+  const [addressee, setAddressee] = useState<"insurer" | "hospital">("insurer");
   const [copied, setCopied] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [today, setToday] = useState("");
@@ -46,10 +53,16 @@ export default function DisputeView({
   const site =
     typeof window !== "undefined" ? window.location.origin : "kavach.health";
 
-  const letter = useMemo(
+  const insurerLetter = useMemo(
     () => buildLetter(c, audit, lang, today || "—", site),
     [c, audit, lang, today, site],
   );
+  const hospitalLetter = useMemo(
+    () => buildHospitalLetter(c, audit, lang, today || "—"),
+    [c, audit, lang, today],
+  );
+  const letter =
+    addressee === "hospital" && hospitalLetter ? hospitalLetter : insurerLetter;
 
   const tpaFlags = audit.flags.filter((f) => f.against === "tpa");
   const hospFlags = audit.flags.filter((f) => f.against === "hospital");
@@ -98,7 +111,7 @@ export default function DisputeView({
       <div className="no-print">
         <Label>{c.city} · Grounds for objection</Label>
         <h1 className="mt-1.5 font-serif text-[30px] leading-[1.02] tracking-[-0.025em] text-ink">
-          {inr(letter.demand)}
+          {inr(totalDisputed(audit))}
           <br />
           <span className="text-[19px] italic text-ink-2">with no clause behind it.</span>
         </h1>
@@ -132,6 +145,49 @@ export default function DisputeView({
           </div>
         </div>
 
+        {/* Addressee */}
+        <div className="mt-4">
+          <Label>Who the letter goes to</Label>
+          <div className="mt-2 grid grid-cols-2 border border-rule bg-paper">
+            <button
+              onClick={() => setAddressee("insurer")}
+              aria-pressed={addressee === "insurer"}
+              className={
+                "flex min-h-[52px] flex-col items-start justify-center px-3 text-left transition-colors " +
+                (addressee === "insurer"
+                  ? "bg-emerald text-ivory"
+                  : "text-ink-2 hover:text-ink")
+              }
+            >
+              <span className="text-[8.5px] uppercase tracking-[0.12em] opacity-70">
+                Deductions
+              </span>
+              <span className="text-[12px] font-medium">The insurer</span>
+            </button>
+            <button
+              onClick={() => setAddressee("hospital")}
+              disabled={!hospitalLetter}
+              aria-pressed={addressee === "hospital"}
+              className={
+                "flex min-h-[52px] flex-col items-start justify-center border-l border-rule px-3 text-left transition-colors disabled:opacity-40 " +
+                (addressee === "hospital"
+                  ? "bg-emerald text-ivory"
+                  : "text-ink-2 hover:text-ink")
+              }
+            >
+              <span className="text-[8.5px] uppercase tracking-[0.12em] opacity-70">
+                Over-billing
+              </span>
+              <span className="text-[12px] font-medium">The hospital</span>
+            </button>
+          </div>
+          <p className="mt-1.5 text-[10px] leading-relaxed text-ink-3">
+            A TPA has no contract with you — deductions are contested against
+            the insurer, which is answerable for its TPA. Over-billing is a
+            separate claim against the hospital.
+          </p>
+        </div>
+
         {/* Grounds */}
         <div className="mt-6">
           <SectionHead
@@ -141,7 +197,7 @@ export default function DisputeView({
           />
 
           <div className="space-y-2.5">
-            {[...tpaFlags, ...hospFlags].map((f, i) => {
+            {(addressee === "hospital" ? hospFlags : tpaFlags).map((f, i) => {
               const meta = FLAG_META[f.kind];
               const isTpa = f.against === "tpa";
               return (
@@ -233,7 +289,7 @@ export default function DisputeView({
         <div className="print-sheet border border-rule bg-paper">
           <div className="flex items-center justify-between border-b border-rule px-3.5 py-2">
             <span className="text-[8.5px] font-medium uppercase tracking-[0.16em] text-ink-3">
-              Draft · {LANG_LABEL[lang]}
+              Draft · {LANG_LABEL[lang]} · {addressee === "hospital" ? "Hospital" : "Insurer"}
             </span>
             <span className="font-mono text-[8.5px] text-ink-3">
               {c.policy.claimNo}

@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { inr } from "@/lib/format";
 import type { Audit } from "@/lib/types";
-import { buildLetter } from "@/lib/letter";
+import { buildLetter, totalDisputed } from "@/lib/letter";
 import { Button, Label, Pill, SectionHead, Rule } from "./ui";
 import type { ViewProps } from "./KavachApp";
 
@@ -63,6 +63,7 @@ export default function DossierView({
   }, []);
 
   const letter = buildLetter(c, audit, "en", "—", "");
+  const demandTotal = totalDisputed(audit);
 
   async function pay() {
     setPhase("creating");
@@ -201,7 +202,7 @@ export default function DossierView({
               Amount in dispute
             </div>
             <div className="mt-1 font-mono text-[34px] tnum font-medium leading-none tracking-[-0.03em] text-vermilion">
-              {inr(letter.demand)}
+              {inr(demandTotal)}
             </div>
           </div>
 

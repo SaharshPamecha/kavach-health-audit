@@ -186,9 +186,7 @@ export function buildLetter(
 ): Letter {
   const s = STRINGS[lang];
   const tpaFlags = a.flags.filter((f) => f.against === "tpa");
-  const hospitalFlags = a.flags.filter((f) => f.against === "hospital");
   const demand = tpaFlags.reduce((sum, f) => sum + f.amount, 0);
-  const hospitalTotal = hospitalFlags.reduce((sum, f) => sum + f.amount, 0);
 
   const tpaAdmitted = a.lines.reduce((sum, l) => sum + l.tpaAllowed, 0);
 
@@ -226,17 +224,7 @@ export function buildLetter(
     lines.push("");
   });
 
-  if (hospitalFlags.length) {
-    lines.push(s.hospitalSection);
-    lines.push("");
-    hospitalFlags.forEach((f, i) => {
-      lines.push(`   ${i + 1}. ${s.titleByKind[f.kind] ?? f.title} — ${inr(f.amount)}`);
-      lines.push(`      ${s.ruleWord}: ${f.citation}`);
-    });
-    lines.push("");
-  }
-
-  lines.push(s.prayer(inr(demand + hospitalTotal)));
+  lines.push(s.prayer(inr(demand)));
   lines.push("");
   lines.push(s.escalation);
   lines.push("");
@@ -268,8 +256,134 @@ export function buildLetter(
     subject: s.subject(c.policy.claimNo, inr(demand)),
     text,
     whatsapp: `https://wa.me/?text=${encodeURIComponent(wa)}`,
-    demand: demand + hospitalTotal,
+    demand,
   };
+}
+
+
+/* ── Second defendant: the hospital ───────────────────────────────────
+ * A TPA has no contract with the patient, so a deduction is contested
+ * against the insurer. Over-billing is a different claim against a
+ * different party, with a different remedy. Two letters, two addressees.
+ */
+
+const HOSP: Record<
+  Lang,
+  {
+    to: string;
+    subject: (patient: string, amount: string) => string;
+    opening: (hospital: string, admission: string, discharge: string) => string;
+    prayer: (amount: string) => string;
+    escalation: string;
+    enclosed: string;
+  }
+> = {
+  en: {
+    to: "The Medical Superintendent",
+    subject: (patient, amount) =>
+      `Itemised bill of ${patient} — request to revise ${amount} before settlement`,
+    opening: (hospital, admission, discharge) =>
+      `I was admitted to ${hospital} from ${admission} to ${discharge}. The itemised bill includes charges that IRDAI's itemisation lists place inside the room, procedure or treatment charges I have already paid for, and which therefore may not be billed separately to me.`,
+    prayer: (a) => `I request you to revise the bill and reverse ${a} before settlement.`,
+    escalation:
+      "If the bill is not revised, I will treat this as a deficiency in service under the Consumer Protection Act, 2019 and place it before the appropriate consumer commission. Nothing in this letter waives any of my rights.",
+    enclosed: "Enclosed: itemised bill, discharge summary, payment receipts.",
+  },
+  hi: {
+    to: "चिकित्सा अधीक्षक",
+    subject: (patient, amount) =>
+      `${patient} का विस्तृत बिल — भुगतान से पहले ${amount} में संशोधन का अनुरोध`,
+    opening: (hospital, admission, discharge) =>
+      `मुझे ${admission} से ${discharge} तक ${hospital} में भर्ती किया गया था। विस्तृत बिल में ऐसी मदें हैं जो IRDAI की मद-वार सूची के अनुसार कमरे, प्रक्रिया या इलाज के उन शुल्कों में शामिल हैं जो मैं पहले ही दे चुका/चुकी हूँ, और इसलिए मुझसे अलग से वसूल नहीं की जा सकतीं।`,
+    prayer: (a) => `अनुरोध है कि बिल में संशोधन कर ${a} की राशि भुगतान से पहले वापस की जाए।`,
+    escalation:
+      "यदि बिल में संशोधन नहीं किया गया, तो मैं इसे उपभोक्ता संरक्षण अधिनियम, 2019 के अंतर्गत सेवा में कमी मानकर उपभोक्ता आयोग के समक्ष ले जाऊँगा/जाऊँगी। इस पत्र से मेरे किसी अधिकार का त्याग नहीं होता।",
+    enclosed: "संलग्न: विस्तृत बिल, डिस्चार्ज सारांश, भुगतान रसीदें।",
+  },
+  kn: {
+    to: "ವೈದ್ಯಕೀಯ ಅಧೀಕ್ಷಕರು",
+    subject: (patient, amount) =>
+      `${patient} ಅವರ ವಿವರವಾದ ಬಿಲ್ — ಪಾವತಿಗೆ ಮೊದಲು ${amount} ಪರಿಷ್ಕರಣೆಗೆ ಕೋರಿಕೆ`,
+    opening: (hospital, admission, discharge) =>
+      `ನನ್ನನ್ನು ${admission} ರಿಂದ ${discharge} ವರೆಗೆ ${hospital} ನಲ್ಲಿ ದಾಖಲಿಸಲಾಗಿತ್ತು. ವಿವರವಾದ ಬಿಲ್‌ನಲ್ಲಿ IRDAI ನ ಮದ-ವಾರು ಪಟ್ಟಿಯ ಪ್ರಕಾರ ನಾನು ಈಗಾಗಲೇ ಪಾವತಿಸಿದ ಕೊಠಡಿ, ಪ್ರಕ್ರಿಯೆ ಅಥವಾ ಚಿಕಿತ್ಸಾ ಶುಲ್ಕಗಳಲ್ಲಿ ಸೇರಿರುವ, ಹಾಗೂ ಪ್ರತ್ಯೇಕವಾಗಿ ವಸೂಲಿ ಮಾಡಲಾಗದ ಮದಗಳಿವೆ.`,
+    prayer: (a) =>
+      `ಬಿಲ್ ಪರಿಷ್ಕರಿಸಿ ${a} ಮೊತ್ತವನ್ನು ಪಾವತಿಗೆ ಮೊದಲು ಹಿಂತಿರುಗಿಸಬೇಕಾಗಿ ಕೋರುತ್ತೇನೆ.`,
+    escalation:
+      "ಬಿಲ್ ಪರಿಷ್ಕರಣೆ ಆಗದಿದ್ದಲ್ಲಿ, ಇದನ್ನು ಗ್ರಾಹಕ ಸಂರಕ್ಷಣಾ ಕಾಯ್ದೆ, 2019 ರ ಅಡಿಯಲ್ಲಿ ಸೇವಾ ನ್ಯೂನತೆ ಎಂದು ಪರಿಗಣಿಸಿ ಗ್ರಾಹಕ ಆಯೋಗದ ಮುಂದೆ ಒಯ್ಯುತ್ತೇನೆ. ಈ ಪತ್ರದಿಂದ ನನ್ನ ಯಾವುದೇ ಹಕ್ಕು ಬಿಟ್ಟುಕೊಡುವುದಿಲ್ಲ.",
+    enclosed: "ಲಗತ್ತು: ವಿವರವಾದ ಬಿಲ್, ಡಿಸ್ಚಾರ್ಜ್ ಸಾರಾಂಶ, ಪಾವತಿ ರಸೀದಿಗಳು.",
+  },
+};
+
+export function buildHospitalLetter(
+  c: DemoCase,
+  a: Audit,
+  lang: Lang,
+  dateLabel: string,
+): Letter | null {
+  const flags = a.flags.filter((f) => f.against === "hospital");
+  if (!flags.length) return null;
+
+  const s = STRINGS[lang];
+  const h = HOSP[lang];
+  const total = flags.reduce((sum, f) => sum + f.amount, 0);
+
+  const lines: string[] = [];
+  lines.push(h.to);
+  lines.push(c.hospital);
+  lines.push(c.city);
+  lines.push("");
+  lines.push(`Date: ${dateLabel}`);
+  lines.push("");
+  lines.push(h.subject(c.patientName, inr(total)));
+  lines.push("");
+  lines.push(`${s.insured} ${c.patientName}, ${c.patientAge}`);
+  lines.push(`${s.admission} ${c.admission}   ${s.discharge} ${c.discharge}`);
+  lines.push(`${s.billed} ${inr(a.billed)}`);
+  lines.push(`${s.disputed} ${inr(total)}`);
+  lines.push("");
+  lines.push(s.salutation);
+  lines.push("");
+  lines.push(h.opening(c.hospital, c.admission, c.discharge));
+  lines.push("");
+  lines.push(s.groundsIntro);
+  lines.push("");
+
+  flags.forEach((f, i) => {
+    const itemLabel = c.items.find((x) => x.id === f.itemId)?.label ?? "";
+    lines.push(`${i + 1}. ${s.titleByKind[f.kind] ?? f.title} — ${inr(f.amount)}`);
+    if (itemLabel) lines.push(`   ${itemLabel}`);
+    lines.push(`   ${s.ruleWord}: ${f.citation}`);
+    lines.push("");
+  });
+
+  lines.push(h.prayer(inr(total)));
+  lines.push("");
+  lines.push(h.escalation);
+  lines.push("");
+  lines.push(s.signoff);
+  lines.push(c.patientName);
+  lines.push(`${c.city}, India`);
+  lines.push("");
+  lines.push(h.enclosed);
+
+  const text = lines.join("\n");
+
+  return {
+    lang,
+    dateLabel,
+    to: h.to,
+    subject: h.subject(c.patientName, inr(total)),
+    text,
+    whatsapp: `https://wa.me/?text=${encodeURIComponent(
+      `${c.hospital} — ${inr(total)} of this bill is on IRDAI's non-payable lists.\n\n${text.slice(0, 400)}`,
+    )}`,
+    demand: total,
+  };
+}
+
+/** Total across both heads of claim — used by the dossier certificate. */
+export function totalDisputed(a: Audit): number {
+  return a.flags.reduce((sum, f) => sum + f.amount, 0);
 }
 
 /** Attach the source line item to each flag for rendering. */

@@ -41,7 +41,7 @@ Each reconciles to the rupee: `insurer + withheld + over-billed + yours = billed
 1. **Home** → tap *Nandi Ridge* — ₹2,48,500
 2. **Bill** → "these two lines: the pharmacy, and the stapler"
 3. **Audit** → drag the room-rent slider. The 55.6% ratio appears; three bars shrink, seven sit behind a lock. **"Lawful on three. Applied to five."**
-4. **Dispute** → tap **ಕನ್ನಡ**. The letter re-renders in Kannada with the circular number intact.
+4. **Dispute** → tap **ಕನ್ನಡ**. The letter re-renders in Kannada with the circular number intact. Then tap **The hospital** — a *second* letter, a different defendant, a different remedy. Say: "one problem, two people who owe you money."
 5. **Desk mode** → *physically turn the phone around.* "This is what you hold up at the counter."
 6. **Dossier** → demo payment → unlocked.
 
